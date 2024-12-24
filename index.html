@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOTA 2</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <header id="main-header" class="hidden">
+        <div id="user-info" class="hidden">
+            <span id="user-login"></span>
+            <button class="logout-btn" onclick="logout()">Выйти</button>
+                <img src="photo/logo.png" id="logo">
+            </a>
+        </div>
+        <nav>
+            <a href="#" id="nav-description" onclick="navigate('description')">Описание</a>
+            <a href="#" id="nav-dictionary" onclick="navigate('dictionary')">Словарь </a>
+            <a href="#" id="nav-gallery" onclick="navigate('gallery')">Галерея</a>
+            <a href="#" id="nav-test" onclick="navigate('test')">Тест</a>
+            <a href="#" id="nav-profile" onclick="navigate('profile')">Личный кабинет</a>
+        </nav>
+    </header>
+
+    <div id="auth-section" class="auth-form">
+        <h2>Авторизация</h2>
+        <input style="background-color: #979797;" type="text" id="login" placeholder="Логин">
+        <br>
+        <span id="login-error" class="error hidden">Введите логин на русском языке от 4 до 10 символов</span>
+
+        <input style="background-color: #979797;" type="date" id="dob" placeholder="Дата рождения">
+        <span id="dob-error" class="error hidden">Введите корректную дату рождения</span>
+        <br>
+        <select style="background-color: #979797;" id="gender">
+            <option value="">Выберите пол</option>
+            <option value="male">Мужской</option>
+            <option value="female">Женский</option>
+        </select>
+        <span id="gender-error" class="error hidden">Выберите пол</span>
+        <br>
+        <br>
+        <button onclick="authenticate()">Войти</button>
+    </div>
+
+    <div id="main-content" class="content hidden">
+
+        <div id="description">
+            <div class="container">
+                <img src="photo/dota.jpg">
+    
+                <h1 class="title">О Dota 2</h1>
+                <p class="intro">
+                    Dota 2 — это одна из самых популярных многопользовательских онлайн-игр в мире, разработанная компанией Valve.
+                    В игре две команды по пять человек соревнуются между собой на специальной арене, стремясь разрушить вражескую
+                    базу — Древнего. Каждый игрок выбирает уникального героя, обладающего особыми способностями и навыками,
+                    что требует умения как индивидуально, так и в командной игре.
+                </p>
+                <p class="intro">
+                    Сложная стратегия, тактические маневры и командная работа — ключевые элементы, которые делают Dota 2
+                    захватывающим и многослойным игровым опытом. Игра привлекает как новичков, так и опытных игроков,
+                    предлагая постоянно развивающийся контент и регулярные обновления, включая новых героев, предметы и карты.
+                </p>
+    
+                <h2 class="subtitle">Основные особенности:</h2>
+                <ul class="features-list">
+                    <li><strong>Герои с уникальными способностями:</strong> каждое сражение неповторимо благодаря разнообразию героев и их возможностям.</li>
+                    <li><strong>Глубокая стратегическая составляющая:</strong> успешная игра зависит от слаженной работы команды, выбора стратегии и тактики.</li>
+                    <li><strong>Мировая киберспортивная сцена:</strong> Dota 2 имеет одну из самых крупных и популярных киберспортивных сцен, включая турниры с многомиллионными призовыми фондами.</li>
+                </ul>
+    
+                <p class="closing">
+                    Погружайтесь в мир Dota 2 и попробуйте стать частью этой захватывающей вселенной, где каждый матч — это шанс проявить свои навыки и интеллект!
+                </p>
+            </div>
+
+
+        </div>
+
+        <div id="dictionary" class="hidden">
+            <div class="container_dict">
+                <h2>Словарь</h2>
+                
+                <input style="background-color: #505050;" type="text" id="search-input" placeholder="Поиск по словарю..." oninput="filterDictionary()">
+                
+                <ul id="terms-list">
+                    <li class="term" onclick="showDescription('term1')">Линия</li>
+                    <li class="term" onclick="showDescription('term2')">Рошан</li>
+                    <li class="term" onclick="showDescription('term3')">Аегис</li>
+                    <li class="term" onclick="showDescription('term4')">Мета</li>
+                    <li class="term" onclick="showDescription('term5')">Ганк</li>
+                    <li class="term" onclick="showDescription('term6')">Крипы</li>
+                    <li class="term" onclick="showDescription('term7')">Ласт-хит</li>
+                    <li class="term" onclick="showDescription('term8')">Ренж и Мили</li>
+                    <li class="term" onclick="showDescription('term9')">Варды</li>
+                    <li class="term" onclick="showDescription('term10')">Руны</li>
+                </ul>
+            
+                <div id="description-box" class="description-box">
+                    <h3 id="term-title">Выберите термин</h3>
+                    <p id="term-description">Описание будет отображено здесь.</p>
+                </div>
+            </div>
+        </div>
+        
+
+        <div id="gallery" class="hidden">
+            <div class="container_gal">
+            <h2>Галерея</h2>
+ 
+            <div class="cr">
+                <div class="slide"> <img src="photo\1.jpg" alt="1 слайд" width="85%" height="85%">
+                    <p class="caption">Marci - Bloomjewel Brawler </p></div>
+                <div class="slide"> <img src="photo\2.jpg" alt="2 слайд" width="85%" height="85%"> 
+                    <p class="caption">Lina - Flame Lily in full bloom </p></div>
+                <div class="slide"> <img src="photo\3.jpg" alt="3 слайд" width="85%" height="85%"> 
+                    <p class="caption">Shadow Fiend - Soul Devourer </p></div>
+                <div class="slide"> <img src="photo\4.jpg" alt="4 слайд" width="85%" height="85%"> 
+                    <p class="caption">Invoker - Garbs of the Eastern Range </p></div>
+                <div class="slide"> <img src="photo\5.jpg" alt="5 слайд" width="85%" height="85%"> 
+                    <p class="caption">Lich - Shares of the Mad Mutineer </p></div>
+                <div class="slide"> <img src="photo\6.jpg" alt="6 слайд" width="85%" height="85%"> 
+                    <p class="caption">Tusk - Brawler of the Glacier Sea </p></div>
+                <div class="slide"> <img src="photo\7.jpg" alt="7 слайд" width="85%" height="85%"> 
+                    <p class="caption">Naga Siren - The Siren's Song </p></div>
+                <div class="slide"> <img src="photo\8.png" alt="8 слайд" width="85%" height="85%"> 
+                    <p class="caption">Naga Siren - The Siren's Song </p></div>    
+                <div class="slide"> <img src="photo\9.PNG" alt="9 слайд" width="85%" height="85%"> 
+                    <p class="caption">Pudge - Frosty the Sew-Man </p></div>
+                <div class="slide"> <img src="photo\10.jpg" alt="10 слайд" width="85%" height="85%"> 
+                    <p class="caption">Queen of pain - Eminence Of Ristul 1
+                    </p></div>
+            </div>       
+            <span></span>    
+            <button id="butprev">предыдущий</button>
+            <button id="butnext">следующий</button>
+            <span id="slideNumber">1 / 3</span>
+        </div>
+    </div>
+
+
+        <div id="test" class="hidden">
+            <h2>Тест</h2>
+            <div>
+                <legend>1. У какого героя самое большое количество матчей? </legend>
+                <label><input style="background-color: #505050;" type="text" id="answer1" ></label>
+                <span class="clear" id="ans1" ></span>
+            </div>
+            <br>
+            <div>
+                <legend>2.  С кого выпадает предмет Aegis of the Immortal?</legend>
+                <label><input style="background-color: #505050;" type="text" id="answer2"></label>
+                <span class="clear" id="ans2" ></span>
+            </div>
+            <br>
+            <div>
+                <legend>3. На какой минуте появляется нейтральный жетон 4 разряда</legend>
+                <label><input type="radio" name="11" value="38:00">38:00</label>
+                <label><input type="radio" name="11" value="36:40" required>36:40</label>
+                <label><input type="radio" name="11" value="34:20">34:20</label>
+                <label><input type="radio" name="11" value="41:30">41:30</label>
+                <span class="clear" id="res1" ></span>
+            </div>
+            <br>
+            <div>
+                <legend>4. Через сколько игровых часов открывается рейтинговый режим?  </legend>
+                <label><input type="radio" name="12" value="150">150</label>
+                <label><input type="radio" name="12" value="доступен сразу">доступен сразу</label>
+                <label><input type="radio" name="12" value="100" required>100</label>
+                <label><input type="radio" name="12" value="50">50</label>
+                <span class="clear" id="res2" ></span>
+            </div>
+            <br>
+            <div>
+                <button id="check" onclick="checkTest()">Проверить</button>
+                <button id="rep" onclick="repeat()">Пройти заново</button>
+            </div>
+
+
+        </div>
+        
+        <div id="profile" class="hidden">
+            <div class="container_prof">
+            <h2>Личный кабинет</h2>
+            <div id="profile-info">
+                <p>Логин:<span id="profile-login">Не задан</span></p>
+                <p>Дата рождения: <span id="profile-dob">Не задана</span></p>
+                <p>Пол:<span id="profile-gender">Не выбран</span></p>
+                <p>Результат теста: <span id="profile-test">Не пройден</span></p>
+            </div>
+            <div>
+                <span id="user-login"></span>
+                <button class="logout-btn" onclick="logout()">Выйти</button>
+            </div>
+        </div>
+        </div>
+        
+        </div>
+
+    <footer>
+        <div>Телефон: +123456789 | <a href="#">VK</a> | <a href="#">Telegram</a>
+        <p>&copy;Все права защищены.2024</div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
