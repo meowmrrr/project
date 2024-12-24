@@ -58,7 +58,7 @@ function authenticate() {
         document.getElementById('main-header').classList.remove('hidden');
         document.getElementById('user-info').classList.remove('hidden');
         document.getElementById('user-login').textContent = login;
-        location.reload()
+        location.replace()
     }
 }
 
