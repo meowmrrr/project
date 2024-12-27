@@ -51,7 +51,7 @@ form1.addEventListener('submit', (event) => {
         document.getElementById('main-header').classList.remove('hidden');
         document.getElementById('user-info').classList.remove('hidden');
         document.getElementById('user-login').textContent = name;
-        location.reload()
+        window.location.reload()
     }
 
 });
