@@ -23,27 +23,35 @@
         </nav>
     </header>
 
-    <div id="auth-section" class="auth-form">
-        <h2>Авторизация</h2>
-        <input style="background-color: #979797; width: 80%;" type="text" id="login" placeholder="Логин">
-        <br>
-        <span id="login-error" class="error hidden">Введите логин на русском языке от 4 до 10 символов</span>
-        
-        <input style="background-color: #979797; width: 80%;" type="date" id="dob" placeholder="Дата рождения">
-        <span id="dob-error" class="error hidden">Введите корректную дату рождения</span>
-        <br>
 
-        <select style="background-color: #979797; width: 80%;" id="gender">
-            <option value="">Выберите пол</option>
-            <option value="male">Мужской</option>
-            <option value="female">Женский</option>
-        </select>
-        <span id="gender-error" class="error hidden">Выберите пол</span>
-        <br>
-        <br>
-        <button onclick="authenticate()">Войти</button>
+<div id="auth-section" class="auth-form">
+    <h2>Авторизация</h2>
+    <form name="auth" novalidate>
+        <div>
+        <label for="login">Введите имя:</label>
+        <input type="text" style="background-color: #979797; width: 80%;" id="login" name="name" required pattern="[А-ЯЁ][а-яё]+">
+        <span class="error-message" style="color: red; font-size: 12px;"></span>
+        </div>        
+        <div>
+        <label for="date">Введите дату рождения:</label>
+        <input type="date" style="background-color: #979797; width: 80%;" id="date" name="date" required min="1900-01-01" max="2025-01-01">
+        <span class="error-message" style="color: red; font-size: 12px;"></span>
+        </div>
+        <label>Выберите пол:</label>
+        <div>
+            <input type="radio" id="male" name="gen" value="Мужской" checked>
+            <label for="male">Мужской</label>
+            <input type="radio" id="female" name="gen" value="Женский">
+            <label for="female">Женский</label>
+        </div>
+
+        <input type="submit" value="Войти" style="margin-top: 10px;">
+    </form>
     </div>
+</div>
 
+
+    
     <div id="main-content" class="content hidden">
 
         <div id="description">
@@ -125,9 +133,9 @@
                 <div class="slide"> <img src="photo\7.jpg" alt="7 слайд" width="85%" height="85%"> 
                     <p class="caption">Naga Siren - The Siren's Song </p></div>
                 <div class="slide"> <img src="photo\8.png" alt="8 слайд" width="85%" height="85%"> 
-                    <p class="caption">Pudge - Frosty the Sew-Man </p></div>    
-                <div class="slide"> <img src="photo\9.png" alt="9 слайд" width="85%" height="85%"> 
-                    <p class="caption">Drow Ranger - Traxex the Drow Ranger</p></div>
+                    <p class="caption">Naga Siren - The Siren's Song </p></div>    
+                <div class="slide"> <img src="photo\9.PNG" alt="9 слайд" width="85%" height="85%"> 
+                    <p class="caption">Pudge - Frosty the Sew-Man </p></div>
                 <div class="slide"> <img src="photo\10.jpg" alt="10 слайд" width="85%" height="85%"> 
                     <p class="caption">Queen of pain - Eminence Of Ristul 1
                     </p></div>
@@ -145,13 +153,13 @@
             <div>
                 <legend>1. У какого героя самое большое количество матчей? </legend>
                 <label><input style="background-color: #505050;" type="text" id="answer1" ></label>
-                <span class="clear" id="ans1" ></span>
+                <p><span class="clear" id="ans1" ></span></p>
             </div>
             <br>
             <div>
                 <legend>2.  С кого выпадает предмет Aegis of the Immortal?</legend>
                 <label><input style="background-color: #505050;" type="text" id="answer2"></label>
-                <span class="clear" id="ans2" ></span>
+                <p><span class="clear" id="ans2" ></span></p>
             </div>
             <br>
             <div>
@@ -176,7 +184,9 @@
                 <button id="check" onclick="checkTest()">Проверить</button>
                 <button id="rep" onclick="repeat()">Пройти заново</button>
             </div>
-
+            <div>
+                <p>Результат теста: <span id="res-test">Не пройден</span></p>
+            </div>
 
         </div>
         
@@ -187,7 +197,7 @@
                 <p>Логин:<span id="profile-login">Не задан</span></p>
                 <p>Дата рождения: <span id="profile-dob">Не задана</span></p>
                 <p>Пол:<span id="profile-gender">Не выбран</span></p>
-                <p>Результат теста: <span id="profile-test">Не пройден</span></p>
+                <p>Результат теста: <span id="profile-test-result">Не пройден</span></p>
             </div>
             <div>
                 <span id="user-login"></span>

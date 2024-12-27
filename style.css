@@ -1,11 +1,14 @@
-
-
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #1b1b1b;
     color: #ccc;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
 }
 
 header, footer {
@@ -32,14 +35,15 @@ nav a:hover {
 }
 
 footer {
-    position: fixed;
     bottom: 0;
     width: 100%;
     text-align: center;
+        padding: 10px 20px;
 }
 
 .content {
     padding: 20px;
+    flex: 1;
 }
 
 .hidden {
@@ -49,11 +53,12 @@ footer {
 .auth-form {
     text-align: center;
     max-width: 500px;
-    margin: 100px auto;
+    margin: 200px auto;
     padding: 20px;
     border: 1px solid #8d8d8d;
     border-radius: 8px;
     background-color: #464646;
+    flex: 1;
 }
 
 .auth-form input {
@@ -84,11 +89,10 @@ footer {
 
 
 
-/* Стили для выделения активного раздела в навигации */
 .active {
-    background-color: #555;  /* Тёмный фон для активной ссылки */
-    border-radius: 4px;       /* Скруглённые углы */
-    padding: 5px 10px;        /* Отступы вокруг текста */
+    background-color: #555;  
+    border-radius: 4px;       
+    padding: 5px 10px;        
 }
 
 
@@ -107,7 +111,7 @@ footer {
 
 
 
-/*  галерея */
+
 
 #gallery{text-align: center;}
 
@@ -136,7 +140,7 @@ footer {
 
 }
 
-/* личный кабинет */
+
 #profile-info {
     margin-top: 20px;
     font-size: 1.2em;
@@ -151,7 +155,7 @@ footer {
 }
 
 
-/* словарь */
+
 
 
 
@@ -415,6 +419,7 @@ button {
     background-color: #333;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
 }
 
 #profile h2 {

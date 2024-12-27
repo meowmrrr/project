@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLogin = localStorage.getItem('login');
-    const savedDob = localStorage.getItem('dob');
-    const savedGender = localStorage.getItem('gender');
+    const savedLogin = localStorage.getItem('name');
+    const savedDob = localStorage.getItem('date');
+    const savedGender = localStorage.getItem('gen');
 
     if (savedLogin && savedDob && savedGender) {
         document.getElementById('auth-section').classList.add('hidden');
@@ -12,60 +12,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-function authenticate() {
-    const login = document.getElementById('login').value.trim();
-    const dob = document.getElementById('dob').value;
-    const gender = document.getElementById('gender').value;
+const form1 = document.forms.auth;
 
-    let valid = true;
+form1.addEventListener('submit', (event) => {
+    event.preventDefault();
 
-    // Проверка логина
-    const loginRegex = /^[а-яА-ЯёЁ0-9]{4,10}$/;
-    if (!login || !loginRegex.test(login)) {
-        document.getElementById('login-error').classList.remove('hidden');
-        valid = false;
+    const name = form1.name.value.trim();
+    const date = form1.date.value;
+    const gen = form1.gen.value;
+
+    let check = true; 
+
+    if (form1.name.validity.valid) {
+        form1.name.labels[0].innerText = "";
+        form1.name.labels[0].classList.remove('error');
     } else {
-        document.getElementById('login-error').classList.add('hidden');
+        form1.name.labels[0].innerText = "Введите корректное имя";
+        form1.name.labels[0].classList.add('error');
+        check = false;
     }
 
-    // Проверка даты рождения
-    const dobDate = new Date(dob);
-    const currentDate = new Date();
-    const minDob = new Date('1950-01-01');
-    if (!dob || dobDate < minDob || dobDate > currentDate) {
-        document.getElementById('dob-error').classList.remove('hidden');
-        valid = false;
+    if (form1.date.validity.valid) {
+        form1.date.labels[0].innerText = "";
+        form1.date.labels[0].classList.remove('error');
     } else {
-        document.getElementById('dob-error').classList.add('hidden');
+        form1.date.labels[0].innerText = "Введите корректную дату";
+        form1.date.labels[0].classList.add('error');
+        check = false;
     }
 
-    // Проверка пола
-    if (!gender) {
-        document.getElementById('gender-error').classList.remove('hidden');
-        valid = false;
-    } else {
-        document.getElementById('gender-error').classList.add('hidden');
-    }
-
-    // Если все данные корректны, сохраняем их и показываем основной контент
-    if (valid) {
-        localStorage.setItem('login', login);
-        localStorage.setItem('dob', dob);
-        localStorage.setItem('gender', gender);
+    if (check) {
+        localStorage.setItem('name', name);
+        localStorage.setItem('date', date);
+        localStorage.setItem('gen', gen);
 
         document.getElementById('auth-section').classList.add('hidden');
         document.getElementById('main-content').classList.remove('hidden');
         document.getElementById('main-header').classList.remove('hidden');
         document.getElementById('user-info').classList.remove('hidden');
-        document.getElementById('user-login').textContent = login;
-        location.reload()
+        document.getElementById('user-login').textContent = name;
+        location.reloadload()
     }
-}
+
+});
+
 
         function logout() {
-            localStorage.removeItem('login');
-            localStorage.removeItem('dob');
-            localStorage.removeItem('gender');
+            localStorage.removeItem('name');
+            localStorage.removeItem('date');
+            localStorage.removeItem('gen');
 
             document.getElementById('auth-section').classList.remove('hidden');
             document.getElementById('main-content').classList.add('hidden');
@@ -74,20 +69,13 @@ function authenticate() {
         }
 
         function navigate(section) {
-            // Скрываем все разделы
             document.querySelectorAll('#main-content > div').forEach(div => div.classList.add('hidden'));
-        
-            // Показываем выбранный раздел
             document.getElementById(section).classList.remove('hidden');
-        
-            // Убираем класс "active" со всех ссылок
             document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-        
-            // Добавляем класс "active" для текущей ссылки
             document.getElementById('nav-' + section).classList.add('active');
         }
         
-// словарь
+// Словарь
 
 const dictionary = {
     term1: {
@@ -132,7 +120,7 @@ const dictionary = {
     }
 };
 
-// Функция для отображения описания термина
+
 function showDescription(term) {
     const title = dictionary[term].title;
     const description = dictionary[term].description;
@@ -141,7 +129,7 @@ function showDescription(term) {
     document.getElementById('term-description').textContent = description;
 }
 
-// Функция для фильтрации списка терминов
+
 function filterDictionary() {
     const searchTerm = document.getElementById('search-input').value.toLowerCase();
     const terms = document.querySelectorAll('#terms-list .term');
@@ -159,7 +147,7 @@ function filterDictionary() {
 showDescription('term1');
 
 
-//галерея
+// Галерея
 const slides = document.querySelectorAll('.slide');
 const butprev = document.getElementById('butprev');
 const butnext = document.getElementById('butnext');
@@ -193,13 +181,13 @@ butprev.addEventListener('click', prevslide);
 showslide(0);
 
 
-//тест
+// Тест
 
 function checkTest() {
     let mark = 0;
 
-    const ans1 = document.getElementById('answer1').value;
-    if (ans1 === 'Пудж') {
+    const ans1 = document.getElementById('answer1').value.toLowerCase();
+    if (ans1 === 'пудж') {
         document.getElementById('ans1').innerText = 'Верно';
         document.getElementById('ans1').className = 'correct';
         mark += 1;
@@ -208,8 +196,8 @@ function checkTest() {
         document.getElementById('ans1').className = 'incorrect';
     }
 
-    const ans2 = document.getElementById('answer2').value;
-    if (ans2 === 'Рошан') {
+    const ans2 = document.getElementById('answer2').value.toLowerCase();
+    if (ans2 === 'рошан') {
         document.getElementById('ans2').innerText = 'Верно';
         document.getElementById('ans2').className = 'correct';
         mark += 1;
@@ -241,8 +229,21 @@ function checkTest() {
         document.getElementById('res2').innerText = 'Неверно. Ответ: 100';
         document.getElementById('res2').className = 'incorrect';
     }
+    
     localStorage.setItem('mark', mark);
+    document.getElementById('res-test').textContent = mark + " балла(ов) из 4";
+
     updateProfile();
+
+    document.getElementById('answer1').readOnly = true;
+    document.getElementById('answer2').readOnly = true;
+
+    for (const answer of answers1) {
+        answer.disabled = true;}
+    for (const answer of answers2) {
+        answer.disabled = true;}
+
+
 }
 
 function prov(answers) {
@@ -253,11 +254,12 @@ function prov(answers) {
             return select;
         }
     }
+    
 }
 
 function updateProfile() {
-    const mark = localStorage.getItem('mark') || 0;
-    document.getElementById('profile-test').textContent = mark + " балла(ов) из 4";
+    const mark = localStorage.getItem('mark');
+    document.getElementById('profile-test-result').textContent = mark + " балла(ов) из 4";
 }
 
 window.onload = function() {
@@ -270,26 +272,49 @@ function repeat (){
     document.getElementById('ans2').innerText = '';
     document.getElementById('res1').innerText = '';
     document.getElementById('res2').innerText = '';
+
+    document.getElementById('res-test').textContent = 'Не пройден';
+
+    
+    const ans1 = document.getElementById('answer1');
+    const ans2 = document.getElementById('answer2');
+    const answers1 = document.getElementsByName("11");
+    const answers2 = document.getElementsByName("12");
+
+    ans1.readOnly = false;
+    ans1.value = '';
+    ans2.readOnly = false;
+    ans2.value = '';
+
+    for (const answer of answers1) {
+        answer.disabled = false;
+        answer.checked = false;
+    }
+    for (const answer of answers2) {
+        answer.disabled = false;
+        answer.checked = false;
+    }
 }
 
 
 
-// личный кабинет
+// Личный кабинет
 
-        function showProfile() {
-            const savedLogin = localStorage.getItem('login');
-            const savedDob = localStorage.getItem('dob');
-            const savedGender = localStorage.getItem('gender');
-            document.getElementById('profile-login').textContent = savedLogin;
-            document.getElementById('profile-dob').textContent = savedDob;
-            document.getElementById('profile-gender').textContent = savedGender === 'male' ? 'Мужской' : 'Женский';
+function showProfile() {
+    const savedLogin = localStorage.getItem('name');
+    const savedDob = localStorage.getItem('date');
+    const savedGender = localStorage.getItem('gen');
+    const savedMark = localStorage.getItem('mark');  
 
-        }
-        
-        showProfile();
+    document.getElementById('profile-login').textContent = savedLogin;
+    document.getElementById('profile-dob').textContent = savedDob;
+    document.getElementById('profile-gender').textContent = savedGender;
+    document.getElementById('profile-test-result').textContent = savedMark ? savedMark + " балла(ов) из 4" : "Не пройден"; 
+}
+
+showProfile();
 
 
 
 
-// 
         
